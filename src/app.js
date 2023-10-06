@@ -12,6 +12,9 @@ mongooose.connect('mongodb://localhost:27017/biblio',{
     useNewUrlParser: true, useUnifiedTopology: true 
     }
     ).then(()=>{
+        app.listen(port, () => {
+            console.log('Server is running on port ' + port);
+        });
          console.log("Connect Server");
     }).catch(err=>{
         console.log("Erreur de connexion");
@@ -91,17 +94,15 @@ app.delete("/books/:id",async (req,res)=>{
         if(!updatedBook){
             return res.status(404).json({'message':"Not Found"});
         }
-        res.json({"message":"Deleted"});
+        res.status(204).send()
     }catch(err){
-        res.status(400).json({ error: err.message });
+        res.status(500).json({ error: err.message });
     }
 })
 
 
 
-app.listen(port, () => {
-	console.log('Server is running on port ' + port);
-});
+
 
 
 
