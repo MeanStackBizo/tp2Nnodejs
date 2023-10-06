@@ -6,7 +6,7 @@ export default class server{
 
     public start():void
     {
-        const app = express();
+        const app  = express();
         app.get('/',(req:Request,res:Response)=>{
             res.send(`TypeScript start`);
         });
